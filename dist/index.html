@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Chat app</title>
 </head>
+
 <body>
     <div id="main"></div>
+    <h1>Chat Room</h1>
+    <div id="chatbox">
+        <form>
+            <label>Name</label>
+            <input type="text" id="name"> 
+            <input type="text" id="message">
+            <button id="sendMessageButton">Send</button>
+        </form>
+        <div id="chatField">
+        </div>
+    </div>
     <script src="bundle.js"></script>
 </body>
+
 </html>

@@ -1,50 +1,62 @@
 const { IncomingMessage } = require("http");
+const { setInterval } = require("timers");
 
-let mainNode = document.getElementById("main");
+function renderHome() {
+    setInterval(() => updateChat(), 1000);
+}
 
-
-
-function renderStart() {
+function updateChat() {
     fetchChat().then(IncomingMessage => {
         var chatbox = IncomingMessage.map(message => {
             return `
+            <div>
             <h3>${message.name}</h3>
             <p>${message.text}</p>
+            </div>
             `;
         }).join("");
-        mainNode.innerHTML = `
-    <h1>Chat Room</h1>
-    <div id="chatbox">
-    <form>
-        <label>Name</label>
-        <input id="name"> <br>
-        <input id="message">
-        <button id="sendMessageButton">Send</button>
-    </form>
-        <div id="chatField">
-        </div>
-    </div>
-    
-`;
 
-let chatFieldNode = document.getElementById("chatField");
-chatFieldNode.innerHTML = chatbox;
-
-    })
-
-}
+        let chatFieldNode = document.getElementById("chatField");
+        chatFieldNode.innerHTML = chatbox;
+    })}
 
 function fetchChat() {
-    var requestOptions = {
-        method: 'GET',
-        redirect: 'follow'
-    };
+            var requestOptions = {
+                method: 'GET',
+                redirect: 'follow'
+            };
 
+            return fetch("https://react-workshop-chat.herokuapp.com/chat", requestOptions)
+                .then(response => response.json());
+        }
+
+function postMessage() {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    let name = document.getElementById("name").value
+    let message = document.getElementById("message").value
+    
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: JSON.stringify({"name":name,"text":message}),
+      redirect: 'follow'
+    };
+    console.log(name)
+    console.log(message)
+    console.log("message")
+    
     return fetch("https://react-workshop-chat.herokuapp.com/chat", requestOptions)
-        .then(response => response.json());
+
+
 }
 
+let buttonNode = document.getElementById("sendMessageButton");
+buttonNode.addEventListener('click', (event) => {
+    event.preventDefault();
+     postMessage().catch(error => console.log(error.message))
+})
 
 
-renderStart();
-fetchChat();
+renderHome();
