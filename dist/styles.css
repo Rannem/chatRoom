@@ -2,50 +2,66 @@
     padding: 0px;
     margin: 0;
     box-sizing: border-box;
+    
 }
+h1 {
+    background-color: yellow;
+}
+#chatbox {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(320deg, rgba(255, 255, 255, 1) 0%, rgba(149, 149, 149, 1) 100%);
+}
+
 #main {
-margin: auto;
+    margin: auto;
 }
+
 form {
     margin-bottom: 100px;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "name messagelabel ."
-                "nameinput chat  button"
-                ". . .";
-                margin-left: 100px;
-                margin-right: 100px;
+    grid-template-areas: "name messagelabel ." "nameinput chat  button" ". . .";
+    margin-left: 100px;
+    margin-right: 100px;
 }
+
 #nameLabel {
     grid-area: name;
 }
+
 #messageLabel {
     grid-area: messagelabel;
 }
-form > #name {
+
+form>#name {
     grid-area: nameinput;
 }
-form > #message {
+
+form>#message {
     grid-area: chat;
     padding: 10px;
 }
-form > button {
+
+form>button {
     grid-area: button;
 }
+
 #chatField {
     margin: auto;
     width: 700px;
 }
-#chatField > div{
+
+#chatField>div {
     display: grid;
     grid-template-rows: 1fr 1fr;
     gap: 0px;
     margin: 5px 0px;
     border: 1px solid black;
     width: 700px;
+    background-color: white;
 }
+
 #message {
     width: 700px;
 }
-
