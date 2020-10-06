@@ -10,13 +10,18 @@ form {
     margin-bottom: 100px;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-areas: "name nameinput . ."
-                ". chat chat ."
-                ". . button .";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "name messagelabel ."
+                "nameinput chat  button"
+                ". . .";
+                margin-left: 100px;
+                margin-right: 100px;
 }
-label {
+#nameLabel {
     grid-area: name;
+}
+#messageLabel {
+    grid-area: messagelabel;
 }
 form > #name {
     grid-area: nameinput;
@@ -38,6 +43,9 @@ form > button {
     gap: 0px;
     margin: 5px 0px;
     border: 1px solid black;
+    width: 700px;
+}
+#message {
     width: 700px;
 }
 h3 {
